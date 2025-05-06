@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 import './app.css'
@@ -12,6 +13,7 @@ const App = () => {
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('') 
   const [user, setUser] = useState(null)
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -36,12 +38,14 @@ const App = () => {
       })
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
-      ) 
+      )
+      blogService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
+      showNotification(`welcome ${user.username}! How are you today?`)
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      showNotification('Wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -105,15 +109,31 @@ const blogForm = () => (
   </div>
 )
 
-console.log('newTitle is: ', newTitle)
-console.log('newAuthor is: ', newAuthor)
-console.log('newUrl is: ', newUrl)
+// console.log('newTitle is: ', newTitle)
+// console.log('newAuthor is: ', newAuthor)
+// console.log('newUrl is: ', newUrl)
 
 const addBlog = (event) => {
   event.preventDefault()
   const blogObject = {
-    title: newBlog
+    title: newTitle,
+    author: newAuthor,
+    url: newUrl
   }
+  showNotification('Blog posted successfully!')
+  blogService.create(blogObject).then((returnedBlog) => {
+    setBlogs(blogs.concat(returnedBlog))
+    setNewTitle('')
+    setNewAuthor('')
+    setNewUrl('')
+  })
+}
+
+const showNotification = (text) => {
+  setNotification(text)
+  setTimeout( () => {
+    setNotification(null)
+  }, 4000)
 }
 
 const userGreeting = user && (
@@ -126,6 +146,7 @@ const userGreeting = user && (
     <div>
       <h2>blogs</h2>
       <b>{userGreeting}</b>
+      <Notification message={notification}/>
       {user === null && loginForm()}
       {user !== null && blogForm()}
       <h3>Your Blogs</h3>

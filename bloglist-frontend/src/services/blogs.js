@@ -5,6 +5,7 @@ let token = null
 
 const setToken = newToken => {
   token = `Bearer ${newToken}`
+  console.log('I set a token!')
 }
 
 const getAll = () => {
@@ -17,8 +18,9 @@ const create = async (newObject) => {
     headers: {Authorization: token }
   }
 
-  const reponse = await axios.post(baseUrl, newObject, config)
+  const response = await axios.post(baseUrl, newObject, config)
+  console.log('I posted!')
   return response.data
 }
 
-export default { getAll, create }
+export default { getAll, create, setToken }
