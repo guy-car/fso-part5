@@ -27,22 +27,25 @@ const BlogForm = ({
       <h3>Add a new blog</h3>
       <form onSubmit={addBlog}>
         <div className="form-row">
-          <label>Title</label>
+          <label htmlFor="title-input">Title</label>
           <input
+            id="title-input"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
           />
         </div>
         <div className="form-row">
-          <label>Author</label>
+          <label htmlFor="author-input">Author</label>
           <input
+            id="author-input"
             value={newAuthor}
             onChange={(e) => setNewAuthor(e.target.value)}
           />
         </div>
         <div className="form-row">
-          <label>Url</label>
+          <label htmlFor="url-input">Url</label>
           <input
+            id="url-input"
             value={newUrl}
             onChange={(e) => setNewUrl(e.target.value)}
           />
