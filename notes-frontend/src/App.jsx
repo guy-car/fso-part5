@@ -14,8 +14,8 @@ const App = () => {
   const [notes, setNotes] = useState([])
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -35,20 +35,20 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
-    
+
     try {
       const user = await loginService.login({
         username, password,
       })
       window.localStorage.setItem(
         'loggedNoteappUser', JSON.stringify(user)
-      ) 
+      )
       console.log('I logged in! User is: ', user)
       noteService.setToken(user.token)
       setUser(user)
       setUsername('')
       setPassword('')
-    // eslint-disable-next-line no-unused-vars
+
     } catch (exception) {
       setErrorMessage('Wrong credentials')
       setTimeout(() => {
@@ -67,7 +67,7 @@ const App = () => {
       .then((returnedNote) => {
         setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
       })
-      // eslint-disable-next-line no-unused-vars
+
       .catch((error) => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
@@ -84,19 +84,19 @@ const App = () => {
       <NoteForm createNote={addNote} />
     </Togglable>
   )
-  
+
   const addNote = (noteObject) => {
     noteFormRef.current.toggleVisibility()
     noteService.create(noteObject).then((returnedNote) => {
       setNotes(notes.concat(returnedNote))
     })
   }
-  
+
   const handleLogout = () => {
     window.localStorage.removeItem('loggedNoteappUser')
     console.log('I logged out! User is: ', user)
   }
-  
+
   const loginForm = () => (
     <Togglable buttonLabel='login'>
       <LoginForm
@@ -105,15 +105,15 @@ const App = () => {
         handleUsernameChange={({ target }) => setUsername(target.value)}
         handlePasswordChange={({ target }) => setPassword(target.value)}
         handleSubmit={handleLogin}
-        />
-  </Togglable>
+      />
+    </Togglable>
   )
   const notesToShow = showAll
-    ? notes 
+    ? notes
     : notes.filter((note) => note.important)
 
   const noteFormRef = useRef()
-  
+
   return (
     <div>
       <h1>Notes</h1>
