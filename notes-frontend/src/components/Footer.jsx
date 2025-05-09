@@ -1,3 +1,4 @@
+ 
 const Footer = () => {
     const footerStyle = {
       color: 'green',
@@ -9,7 +10,6 @@ const Footer = () => {
       <div style={footerStyle}>
         <br />
         <em>
-          Note app, Guillaume's experiments, Bushwick, 2025
         </em>
       </div>
     )
