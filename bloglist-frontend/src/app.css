@@ -1,24 +1,11 @@
-.blog-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+h1, h2, h3 {
+    color: #9800b3;;
 }
 
-.notification {
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
-    border: 1px solid #b6f2c1;
-    border-radius: 8px;
-    background-color: #e6f9ec;
-    color: #276749;
-    font-size: 1rem;
-    font-family: sans-serif;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    transition: opacity 0.3s ease-in-out;
-    font-weight: 600;
-    width: fit-content;
-    max-width: 60%;
-  }
+.user-greeting {
+    margin-top: 20px;
+    font-style: italic;
+}
 
 .error-notification {
     padding: 1rem 1.5rem;
@@ -35,3 +22,104 @@
     width: fit-content;
     max-width: 60%;
   }
+  .notification {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border: 1px solid #b6f2c1;
+    border-radius: 8px;
+    background-color: #e6f9ec;
+    color: #276749;
+    font-size: 1rem;
+    font-family: sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: opacity 0.3s ease-in-out;
+    font-weight: 600;
+    width: fit-content;
+    max-width: 60%;
+  }
+
+.blog-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #9800b3;
+}
+  
+  .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  .form-row label {
+    width: 100px;
+    margin-right: 1rem;
+    text-align: right;
+    font-weight: 500;
+  }
+  .form-row input {
+    flex: 1;
+    padding: 0.4rem;
+    border: 1px solid #9800b3;
+    border-radius: 4px;
+  }
+  
+  .blog-form button:hover {
+    background-color: #ec9de1;
+    color: rgb(244, 7, 149);
+  }
+
+.blog {
+    margin-top: 15px;
+    border: 1px solid rgb(1, 144, 163);
+    margin-right: 400px;
+    padding: 5px;
+}
+
+.blog > p {
+    margin: 0;
+}
+
+.blog span {
+    margin: 0;
+    color: rgb(1, 144, 163);
+    font-style: italic;
+}
+.small-button {
+    padding: 2px 6px;
+    margin-left: 5px;
+    font-size: 0.8rem;
+    background-color: rgb(1, 144, 163);
+}
+.small-button:hover {
+    background-color: rgb(1, 66, 163);
+    color: rgb(255, 255, 255);
+  }
+
+.remove-button{
+    padding: 2px 6px;
+    margin-left: 5px;
+    font-size: 0.8rem;
+    background-color: #b30000;
+}
+.remove-button:hover {
+    background-color: #000000;
+    color: rgb(255, 0, 0);
+  }
+
+  button {
+    padding: 4px 12px;
+    margin: 3px;
+    background-color: #9800b3;
+    color: whitesmoke;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ec9de1;
+    color: rgb(244, 7, 149);
+  }
+
+  
