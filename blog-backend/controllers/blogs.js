@@ -36,12 +36,25 @@ blogsRouter.post('/', middleware.userExtractor,async (request, response) => {
 
 blogsRouter.put('/:id', middleware.userExtractor, async (request, response) => {
   const body = request.body
+  const originalBlog = await Blog.findById(request.params.id)
+
+  if (!originalBlog) {
+    return response.status(404).json({ error: 'blog not found' })
+  }
+  const blog = {
+    title: body.title || originalBlog.title,
+    author: body.author || originalBlog.author,
+    url: body.url || originalBlog.url,
+    likes: body.likes !== undefined ? body.likes : originalBlog.likes,
+    user: originalBlog.user // Always use the original user reference
+  }
 
   const updatedBlog = await Blog
     .findByIdAndUpdate(
       request.params.id,
-      { ...body },
+      blog,
       { new: true })
+    .populate('user', { username: 1, name: 1 })
   response.json(updatedBlog)
 })
 
